@@ -1,10 +1,13 @@
 package application;
 
+import partida.ChessMatch;
+
 public class ConsoleChess {
 
 	public static void main(String[] args) {
 		
-		System.out.println("Aplicativo em produção");
+		ChessMatch match = new ChessMatch();
+		UserInterface.showBoard(match.getPieces());
 
 	}
 
