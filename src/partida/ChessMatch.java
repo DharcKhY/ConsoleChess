@@ -1,8 +1,15 @@
 package partida;
 
 import partida.colors.Color;
-import partida.pieces.*;
+import partida.exception.MatchException;
+import partida.pieces.Bishop;
+import partida.pieces.King;
+import partida.pieces.Knight;
+import partida.pieces.Queen;
+import partida.pieces.Rook;
 import tabuleiro.Board;
+import tabuleiro.Piece;
+import tabuleiro.Position;
 
 public class ChessMatch {
 	
@@ -39,7 +46,9 @@ public class ChessMatch {
 		}
 		board.insertPiece(piece, new ChessPosition(column, row).toPosition());
 	}
-		
+	
+	
+	
 	// Nessa função será passado uma String 'position' como argumento
 	// Que será convertido nas posições da função addNewPiece(char, int, ChessPiece)
 	// Caso seja passado o parâmetro como sendo "A1", por exemplo
@@ -86,6 +95,37 @@ public class ChessMatch {
 			return position;
 		}	
 	}
+	
+	
+	
+	public ChessPiece movePiece(ChessPosition source, ChessPosition target) {
+		
+		Position src = source.toPosition();
+		Position tgt = target.toPosition();
+		
+		validatePosition(src);
+		Piece capturedPiece = moveTo(src, tgt);
+		return (ChessPiece) capturedPiece;
+	}
+	
+	
+	
+	private void validatePosition(Position position) {
+		if ( !board.hasPiece(position) ) {
+			throw new MatchException("Match Exception :: position is not valid on game board");
+		}	
+	}
+	
+	
+	
+	private Piece moveTo(Position source, Position target) {
+		Piece p = board.removePiece(source);
+		Piece capturedPieces = board.removePiece(target);
+		board.insertPiece(p, target);
+		return capturedPieces;
+	}	
+	
+	
 	
 	
 	

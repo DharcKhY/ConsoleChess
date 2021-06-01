@@ -1,8 +1,8 @@
 package partida.exception;
 
-import java.io.Serializable;
+import tabuleiro.exception.BoardException;
 
-public class MatchException extends RuntimeException implements Serializable {
+public class MatchException extends BoardException {
 	private static final long serialVersionUID = 1L;
 
 	public MatchException(String errorMsg) {

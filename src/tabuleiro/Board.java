@@ -57,6 +57,22 @@ public class Board {
 	
 	
 	
+	public Piece removePiece(Position position) {
+		if ( !isValidPosition(position) ) {
+			throw new BoardException("Board Exception :: position is not valid on game board");
+		}
+		if ( piece(position) == null ) {
+			return null;
+		}
+		Piece aux = piece(position);
+		aux.position = null;
+		boardPieces[position.getRow()][position.getColumn()] = null;
+		
+		return aux;
+	}
+	
+	
+	
 	// Verifica se a posição informada é válida dentro das especificidades do tabuleiro
 	public boolean isValidPosition(int row, int column) {
 		if ( !(row < 0 || row > 8) || !(column < 0 || column > 8) ) {

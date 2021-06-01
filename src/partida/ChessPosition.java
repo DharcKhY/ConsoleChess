@@ -11,12 +11,9 @@ public class ChessPosition {
 	
 	
 	public ChessPosition(char column, int row) {
-		
  		if ( (Character.toLowerCase(column) < 'a' || Character.toLowerCase(column) > 'h') || (row < 1 || row > 8) ) {
  			throw new MatchException("Match Exception :: valid values are from 'a1' to 'h8'");
  		}
- 		
- 		
 		this.column = column;
 		this.row = row;
 	}
