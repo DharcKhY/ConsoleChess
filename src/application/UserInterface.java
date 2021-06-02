@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 import partida.ChessPiece;
 import partida.ChessPosition;
-import partida.colors.BashColor;
+import partida.colors.ConsoleUtils;
 import partida.colors.Color;
 
 public class UserInterface {
@@ -22,7 +22,7 @@ public class UserInterface {
 			return new ChessPosition(column, row);
 			
 		} catch ( RuntimeException re ){
-			throw new InputMismatchException("Position Input Error :: valid values are from 'a1' to 'h8' ");
+			throw new InputMismatchException("Posição incorreta, as posições válidas são entre a1(A1) até h8(H8)");
 		}
 	}
 	
@@ -67,9 +67,9 @@ public class UserInterface {
 			System.out.print("[    ] ");
 		} else {
 			if ( piece.getColor() == Color.WHITE ) {
-				System.out.print(BashColor.BACKGROUND_BLUE + "" + BashColor.FONT_WHITE + "[ " + piece + " ]" + BashColor.RESET + " ");
+				System.out.print(ConsoleUtils.BACKGROUND_BLUE + "" + ConsoleUtils.FONT_WHITE + "[ " + piece + " ]" + ConsoleUtils.RESET + " ");
 			} else {
-				System.out.print(BashColor.BACKGROUND_CYAN + "" + BashColor.FONT_BLACK + "[ " + piece + " ]" + BashColor.RESET + " ");
+				System.out.print(ConsoleUtils.BACKGROUND_CYAN + "" + ConsoleUtils.FONT_BLACK + "[ " + piece + " ]" + ConsoleUtils.RESET + " ");
 			}
 		}
 	}
@@ -87,4 +87,10 @@ public class UserInterface {
 	}
 	
 	
+	
+	// Clear Console
+	public static void clearConsole() {
+		System.out.println(ConsoleUtils.CLEAR);
+		System.out.flush();
+	}
 }
