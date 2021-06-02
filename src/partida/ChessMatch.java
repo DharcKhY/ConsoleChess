@@ -31,7 +31,6 @@ public class ChessMatch {
 				chessPiece[x][y] = (ChessPiece) board.piece(x, y);
 			}
 		}
-		
 		return chessPiece;
 	}
 	
@@ -67,13 +66,14 @@ public class ChessMatch {
 	}
 	
 	
+	
 	// Essa função auxiliar serve para converter os valores dos caracteres Maiúsculos
 	// Para os caracteres minúsculos.
 	// Essa função serve para converter todas as posições para minúsculo, para que haja compatibilidade
 	// na hora de passar um parâmetro que contenha letras Maiúsculas, por exemplo: "A1"
 	// Sem essa conversão do toLower(arg) ao passar o parâmetro contendo letra Maiúscula.
 	// Será gerado um erro ao adicionar a peça no tabuleiro
-	private static char toLower(char position) {
+	protected static char toLower(char position) {
 		switch(position) {
 		case 'A':
 			return 'a';
@@ -99,10 +99,8 @@ public class ChessMatch {
 	
 	
 	public ChessPiece movePiece(ChessPosition source, ChessPosition target) {
-		
 		Position src = source.toPosition();
-		Position tgt = target.toPosition();
-		
+		Position tgt = target.toPosition();	
 		validatePosition(src);
 		Piece capturedPiece = moveTo(src, tgt);
 		return (ChessPiece) capturedPiece;
@@ -112,7 +110,7 @@ public class ChessMatch {
 	
 	private void validatePosition(Position position) {
 		if ( !board.hasPiece(position) ) {
-			throw new MatchException("Match Exception :: position is not valid on game board");
+			throw new MatchException("Posição inválida e/ou fora das dimensões do tabuleiro");
 		}	
 	}
 	
@@ -125,9 +123,7 @@ public class ChessMatch {
 		return capturedPieces;
 	}	
 	
-	
-	
-	
+		
 	
 	// Posição inicial das peças do tabuleiro
 	private void initialSetup() {
