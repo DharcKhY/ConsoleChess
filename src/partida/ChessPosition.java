@@ -13,7 +13,7 @@ public class ChessPosition {
 	public ChessPosition(char column, int row) {
 		column = ChessMatch.toLower(column);
  		if ( (column < 'a' || column > 'h') || (row < 1 || row > 8) ) {
- 			throw new MatchException("Posição incorreta, as posições válidas são entre a1(A1) até h8(H8)");
+ 			throw new MatchException("Invalid position, valid values: {'A1' to 'H8'}");
  		}
 		this.column = column;
 		this.row = row;

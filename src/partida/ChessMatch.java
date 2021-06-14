@@ -7,6 +7,7 @@ import partida.pieces.King;
 import partida.pieces.Knight;
 import partida.pieces.Queen;
 import partida.pieces.Rook;
+
 import tabuleiro.Board;
 import tabuleiro.Piece;
 import tabuleiro.Position;
@@ -96,22 +97,40 @@ public class ChessMatch {
 		}	
 	}
 	
+		
+	
+	public boolean[][] possibleMoves(ChessPosition source) {
+		Position position = source.toPosition();
+		validatePosition_Source(position);
+		return board.piece(position).possibleMoves();
+	}
+	
 	
 	
 	public ChessPiece movePiece(ChessPosition source, ChessPosition target) {
 		Position src = source.toPosition();
 		Position tgt = target.toPosition();	
-		validatePosition(src);
+		validatePosition_Source(src);
+		validatePosition_Target(src, tgt);
 		Piece capturedPiece = moveTo(src, tgt);
 		return (ChessPiece) capturedPiece;
 	}
 	
 	
 	
-	private void validatePosition(Position position) {
+	private void validatePosition_Source(Position position) {
 		if ( !board.hasPiece(position) ) {
-			throw new MatchException("Posição inválida e/ou fora das dimensões do tabuleiro");
-		}	
+			throw new MatchException("Invalid position or out of bound in game board");
+		}
+		if ( !board.piece(position).isMovable() ) {
+			throw new MatchException("This movement action has not possible to this piece");
+		}
+	}
+	
+	private void validatePosition_Target(Position source, Position target) {
+		if ( !board.piece(source).possibleMoves(target) ) {
+			throw new MatchException("The choosen piece can't move to target position");
+		}
 	}
 	
 	
