@@ -13,7 +13,7 @@ public class Board {
 	public Board() {
 	}
 	public Board(int rows, int columns) {
-		if ( (rows < 1 || rows > 8) || (columns < 0 || columns > 8) ) {
+		if ( (rows < 0 || rows > 8) || (columns < 0 || columns > 8) ) {
 			throw new BoardException("Board Exception :: was not possible initialize game board");
 		}
 		this.rows = rows;
@@ -75,7 +75,7 @@ public class Board {
 	
 	// Verifica se a posição informada é válida dentro das especificidades do tabuleiro
 	public boolean isValidPosition(int row, int column) {
-		if ( !(row < 0 || row > 8) || !(column < 0 || column > 8) ) {
+		if ( !(row < 0 || row > this.rows) || !(column < 0 || column > this.columns) ) {
 			return true;
 		} else {
 			return false;
@@ -92,6 +92,6 @@ public class Board {
 		if ( !isValidPosition(position) ) {
 			throw new BoardException("Board Exception :: position is not valid on game board");
 		}
-		return !(piece(position) == null);
+		return piece(position) != null;
 	}
 }

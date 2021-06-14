@@ -1,7 +1,5 @@
 package tabuleiro;
 
-import tabuleiro.exception.BoardException;
-
 public class Position {
 	
 	private int row;
@@ -12,9 +10,6 @@ public class Position {
 	public Position() {
 	}
 	public Position(int row, int column) {
-		if ( (row < 0 || row > 7) || (column < 0 || column > 7)) {
-			throw new BoardException("Board Exception :: Position is not valid");
-		}
 		this.row = row;
 		this.column = column;
 	}
@@ -26,6 +21,22 @@ public class Position {
 	}
 	public int getColumn() {
 		return this.column;
+	}
+	
+	
+	
+	public void setRow(int row) {
+		this.row = row;
+	}
+	public void setColumn(int column) {
+		this.column = column;
+	}
+	
+	
+	
+	public void setValues(int row, int column) {
+		this.setRow(row);
+		this.setColumn(column);
 	}
 	
 	
