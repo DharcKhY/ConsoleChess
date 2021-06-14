@@ -22,7 +22,7 @@ public class UserInterface {
 			return new ChessPosition(column, row);
 			
 		} catch ( RuntimeException re ){
-			throw new InputMismatchException("Posição incorreta, as posições válidas são entre a1(A1) até h8(H8)");
+			throw new InputMismatchException("Invalid position, valid values: {'A1' to 'H8'} ");
 		}
 	}
 	

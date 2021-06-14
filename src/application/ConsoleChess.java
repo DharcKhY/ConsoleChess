@@ -30,6 +30,7 @@ public class ConsoleChess {
 				
 				ChessPosition target = UserInterface.readPosition(s);
 				ChessPiece capturedPiece = match.movePiece(source, target);
+				System.out.println(capturedPiece);
 			} catch(MatchException me) {
 				System.out.println(me.getMessage());
 				s.nextLine();
